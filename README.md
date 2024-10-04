@@ -6,8 +6,4 @@
 - Retain color
 - Keep file line at bottom
 
-
-
-
-
 Inspired by Eandrju/cellular-automaton.nvim
