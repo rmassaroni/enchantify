@@ -53,5 +53,6 @@ end
 function enchant.enchant_current_buffer()
     enchant.display_translation()
 end
+
 return enchant
 
