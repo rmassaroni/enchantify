@@ -29,6 +29,15 @@ function enchant.display_translation()
     local filetype = vim.api.nvim_buf_get_option(current_buf, 'filetype')
     vim.api.nvim_buf_set_option(buf, 'filetype', filetype)
 
+    local signs = vim.fn.sign_getplaced(current_buf, {group = '*'})
+    if #signs > 0 then
+        local placed_signs = signs[1].signs
+        for _, sign in ipairs(placed_signs) do
+            vim.fn.sign_define(sign.name, {text = '>>', texthl = 'WarningMsg'})
+            vim.fn.sign_place(0, sign.group, sign.name, buf, {lnum = sign.lnum, priority = sign.priority})
+        end
+    end
+
     local win_width = vim.fn.winwidth(0)
     local win_height = vim.fn.winheight(0)
     local win_height_adjusted = math.min(win_height, #translated_lines)
