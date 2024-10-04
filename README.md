@@ -4,7 +4,7 @@
 - Uppercase letters should be treated as lowercase
 - Remove deprecated code
 - Retain color
-- Keep file line at bottom
+- Keep row numbers and file line at bottom
 
 
 
