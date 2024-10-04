@@ -73,6 +73,9 @@ function enchant.display_translation()
 
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, translated_lines)
 
+    vim.api.nvim_buf_set_option(buf, 'number', true)
+    vim.api.nvim_buf_set_option(buf, 'relativenumber', true)
+
     local win_width = get_usable_window_width()
     local win_height = #lines
 
@@ -82,7 +85,6 @@ function enchant.display_translation()
         height = win_height,
         row = 0,
         col = 0,
-        style = 'minimal',
         border = 'none'
     }
     local win = vim.api.nvim_open_win(buf, true, opts)
