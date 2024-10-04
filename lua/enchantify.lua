@@ -24,22 +24,13 @@ function enchant.display_translation()
     local status_line = "Translated with Enchantify. Press 'q' to close."
     table.insert(translated_lines, status_line)
 
-    -- vim.api.nvim_buf_set_lines(buf, 0, -1, false, translated_lines)
-    -- vim.api.nvim_buf_set_lines(buf, -1, -1, false, { status_line })
-    --
-    -- vim.api.nvim_buf_set_option(buf, 'number', true)
-    -- vim.api.nvim_buf_set_option(buf, 'relativenumber', true)
-    --
-    -- local win_width = get_usable_window_width()
-    -- local win_height = #translated_lines + 1
-
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, translated_lines)
 
     vim.api.nvim_buf_set_option(buf, 'number', true)
     vim.api.nvim_buf_set_option(buf, 'relativenumber', true)
+    vim.api.nvim_buf_set_option(buf, 'modifiable', false)
 
     local win_width = get_usable_window_width()
-    -- local win_height = #lines + 1
     local win_height = #translated_lines
 
     local opts = {
@@ -48,26 +39,12 @@ function enchant.display_translation()
         height = win_height,
         row = 0,
         col = 0,
-        border = 'none'
+        border = 'none',
     }
     local win = vim.api.nvim_open_win(buf, true, opts)
 
-    vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
-    vim.api.nvim_buf_set_option(buf, 'buflisted', false)
-
-    -- vim.api.nvim_buf_set_option(buf, 'modifiable', true)
-    --
-    -- vim.api.nvim_buf_set_lines(buf, 0, -1, false, translated_lines)
-    --
-    -- local status_line = "Translated with Enchantify. Press 'q' to close."
-    -- vim.api.nvim_buf_set_lines(buf, -1, -1, false, { status_line })
-
-    vim.api.nvim_buf_set_option(buf, 'modifiable', false)
-
     vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':close<CR>', { noremap = true, silent = true })
 
-    -- vim.api.nvim_buf_set_option(buf, 'buflisted', false)
-    -- vim.api.nvim_buf_set_option(buf, 'modifiable', false)
     vim.cmd("au BufDelete <buffer> ++nested silent! pclose")
 end
 
