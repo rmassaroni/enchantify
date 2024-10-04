@@ -3,4 +3,4 @@ if exists("g:loaded_enchantify")
 endif
 let g:loaded_enchantify = 1
 
-command! Enchantify call luaeval("require('enchant').enchant_current_buffer()")
+command! Enchantify call luaeval("require('enchantify').enchant_current_buffer()")
