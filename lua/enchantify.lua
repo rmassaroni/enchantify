@@ -1,5 +1,4 @@
 local enchant_mapping = require("mapping")
-local get_usable_window_width = require("utils")
 
 local enchant = {}
 
@@ -21,10 +20,6 @@ function enchant.display_translation()
         table.insert(translated_lines, enchant.translate_to_enchant(line))
     end
 
-    -- local status_line_height = 2
-    -- local total_lines = #translated_lines
-    -- local available_height = total_lines < 10 and total_lines or total_lines - status_line_height
-
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, translated_lines)
 
     vim.api.nvim_buf_set_option(buf, 'number', true)
@@ -34,8 +29,7 @@ function enchant.display_translation()
     local filetype = vim.api.nvim_buf_get_option(current_buf, 'filetype')
     vim.api.nvim_buf_set_option(buf, 'filetype', filetype)
 
-    local win_width = get_usable_window_width()
-    -- local win_height = available_height
+    local win_width = vim.fn.winwidth(0)
     local win_height = vim.fn.winheight(0)
     local win_height_adjusted = math.min(win_height, #translated_lines)
 
