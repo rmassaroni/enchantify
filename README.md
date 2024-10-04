@@ -6,5 +6,6 @@
 - Translate status line and try to get lualine compatibility
 - Put space before row numbers to match original style
 - Improve tree-sitter parsing and coloring
+- conver numbers to translated roman numerals?
 
 Inspired by Eandrju/cellular-automaton.nvim
