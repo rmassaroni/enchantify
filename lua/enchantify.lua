@@ -21,9 +21,6 @@ function enchant.display_translation()
         table.insert(translated_lines, enchant.translate_to_enchant(line))
     end
 
-    local status_line = "Translated with Enchantify. Press 'q' to close."
-    table.insert(translated_lines, status_line)
-
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, translated_lines)
 
     vim.api.nvim_buf_set_option(buf, 'number', true)
@@ -34,7 +31,7 @@ function enchant.display_translation()
     vim.api.nvim_buf_set_option(buf, 'filetype', filetype)
 
     local win_width = get_usable_window_width()
-    local win_height = #translated_lines
+    local win_height = #translated_lines - 4
 
     local opts = {
         relative = 'editor',
@@ -44,6 +41,7 @@ function enchant.display_translation()
         col = 0,
         border = 'none'
     }
+
     local win = vim.api.nvim_open_win(buf, true, opts)
 
     vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':close<CR>', { noremap = true, silent = true })
@@ -56,3 +54,7 @@ function enchant.enchant_current_buffer()
 end
 
 return enchant
+
+
+
+--test
