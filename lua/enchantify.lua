@@ -33,8 +33,20 @@ function enchant.display_translation()
     if #signs > 0 then
         local placed_signs = signs[1].signs
         for _, sign in ipairs(placed_signs) do
+            -- local sign_def = vim.fn.sign_getdefined(sign.name)
             vim.fn.sign_define(sign.name, {text = '>>', texthl = 'WarningMsg'})
             vim.fn.sign_place(0, sign.group, sign.name, buf, {lnum = sign.lnum, priority = sign.priority})
+            -- if sign_def and #sign_def > 0 then
+            --     vim.fn.sign_define(sign.name, {
+            --         text = sign_def[1].text,
+            --         texthl = sign_def[1].texthl,
+            --         numhl = sign_def[1].numhl,
+            --         linehl = sign_def[1].linehl,
+            --         icon = sign_def[1].icon
+            --     })
+            --
+            --     vim.fn.sign_place(0, sign.group, sign.name, buf, {lnum = sign.lnum, priority = sign.priority})
+            -- end
         end
     end
 
